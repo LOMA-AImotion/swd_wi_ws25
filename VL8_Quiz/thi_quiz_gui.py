@@ -35,17 +35,33 @@ def answered(i):
         i: integer, the index (starting at 0) of the given answer.
     """
 
-    pass
+    print(f"Button {i} was pressed")
 
 
 def draw_gui():
     """
     Retrieves the next question and updates the texts in the GUI.    
     """
-
-    pass
+    
 
 main_window:tk.Tk = tk.Tk()
 main_window.title("THI Quiz")
+
+question_label = tk.Label(main_window, text="Hello!", font=("Arial 18 bold"))
+question_label.grid(row=0, column=0, columnspan=2)
+
+answer_buttons = [tk.Button(main_window, text=f"Answer {i}") for i in range(4)]
+
+button_index = 0
+for i in range(1,3):
+    for j in range(1,3):
+        current_button = answer_buttons[button_index]
+        current_button.config(command=partial(answered, button_index))
+        current_button.grid(row= i, column=j)
+
+        button_index += 1
+
+
+main_window.mainloop()
 
 
